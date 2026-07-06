@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.StudentMapper">
+    <select id="findAll" resultType="com.ssm.entity.Student">
+        select id, stu_name as stuName, gender, age, stu_class as stuClass
+        from student order by id
+    </select>
+
+    <select id="findById" resultType="com.ssm.entity.Student">
+        select id, stu_name as stuName, gender, age, stu_class as stuClass
+        from student where id = #{id}
+    </select>
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into student(stu_name, gender, age, stu_class)
+        values(#{stuName}, #{gender}, #{age}, #{stuClass})
+    </insert>
+
+    <update id="update">
+        update student set stu_name=#{stuName}, gender=#{gender}, age=#{age}, stu_class=#{stuClass}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from student where id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        select count(*) from student
+    </select>
+
+    <!-- 按姓名模糊查询 -->
+    <select id="searchByName" resultType="com.ssm.entity.Student">
+        select id, stu_name as stuName, gender, age, stu_class as stuClass
+        from student
+        where stu_name like concat('%', #{keyword}, '%')
+        order by id
+    </select>
+</mapper>
