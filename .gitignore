@@ -1,0 +1,14 @@
+# IDE配置文件
+.idea/
+.vscode/
+*.iml
+*.classpath
+*.project
+
+# Maven编译产物
+target/
+*.war
+
+# 系统缓存文件
+.DS_Store
+Thumbs.db
